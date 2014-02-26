@@ -5,13 +5,15 @@ public class NPC : MonoBehaviour {
 	int speed = 150;
 	int dir = 3;
 	bool changeDir = true;
+	public Texture normal;
+	public Texture pcp;
 
 	void Start(){
-
+		renderer.material.mainTexture = normal;
 	}
 	// Update is called once per frame
 	void Update () { 
-		Debug.Log (""+dir);
+		//Debug.Log (""+dir);
 		if (changeDir) 
 		{
 			changeDir = false;
@@ -35,7 +37,11 @@ public class NPC : MonoBehaviour {
 		float temp2 = Random.Range (0.60f, 1.0f);
 		colliders.size = new Vector2(temp1,temp2);
 
-
+		if (GameManager.pcpStatus ()) {
+			renderer.material.mainTexture = pcp;
+		} else {
+			renderer.material.mainTexture = normal;
+		}
 	
 	}
 	void OnCollisionEnter2D(Collision2D other){

@@ -40,17 +40,21 @@ public class Move : MonoBehaviour {
 			Destroy(other.gameObject);
 			GameManager.updateScore();
 		}
-		if (other.gameObject.name == "leftPort") {
+		else if (other.gameObject.name == "pcp") {
+			Destroy(other.gameObject);
+			GameManager.setPCP();
+		}
+		else if (other.gameObject.name == "leftPort") {
 			Vector3 pos = transform.position;
 			pos.x *= -1;
 			transform.position = pos;
 		}
-		if (other.gameObject.name == "rightPort") {
+		else if (other.gameObject.name == "rightPort") {
 			Vector3 pos = transform.position;
 			pos.x *= -1;
 			transform.position = pos;
 		}
-		if (other.gameObject.name == "oneWayDoor") {
+		else if (other.gameObject.name == "oneWayDoor") {
 			rigidbody2D.velocity = Vector2.zero;
 			Vector2 pos = transform.position;
 			pos.x = 0.04759641f;
@@ -61,8 +65,14 @@ public class Move : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.name == "npc") {
-			GameManager.gameOverSet();
-			Destroy(this.gameObject);
+			if(GameManager.pcpStatus()){
+				Destroy(other.gameObject);
+			}
+			else{
+				GameManager.gameOverSet();
+				Destroy(this.gameObject);
+			}
+
 		}
 	}
 }
