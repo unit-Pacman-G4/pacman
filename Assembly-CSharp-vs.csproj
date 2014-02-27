@@ -46,10 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CamMove3D.cs" />
      <Compile Include="Assets\GameManager.cs" />
-     <Compile Include="Assets\GameSetup.cs" />
      <Compile Include="Assets\Menu.cs" />
      <Compile Include="Assets\Move.cs" />
+     <Compile Include="Assets\Move3D.cs" />
      <Compile Include="Assets\NPC.cs" />
      <Compile Include="Assets\ScaleToScreen.cs" />
   </ItemGroup>

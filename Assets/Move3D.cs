@@ -1,40 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Move : MonoBehaviour {
+public class Move3D : MonoBehaviour {
 	int speed = 5;
-
+	
 	// Use this for initialization
 	void Start () {
-		Vector2 pos = rigidbody2D.velocity;
-		pos.x = speed * -1;
-		rigidbody2D.velocity = pos;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 pos = rigidbody2D.velocity;
+
 		if (Input.GetAxis ("Horizontal") > 0) {
-			//pos.y = 0;
-			pos.x = speed;
+
+			transform.Rotate(Vector3.up, Time.deltaTime*100);
+
 		}
 		else if (Input.GetAxis ("Horizontal") < 0) {
-			//pos.y = 0;
-			pos.x = speed * -1;
+
+			transform.Rotate(Vector3.down, Time.deltaTime*100);
 		}
 		if (Input.GetAxis ("Vertical") > 0) {
-			//pos.x = 0;
-			pos.y = speed;
+
+			transform.Translate(Vector3.forward * Time.deltaTime*3);
+
 		}
 		else if (Input.GetAxis ("Vertical") < 0) {
-			//pos.x = 0;
-			pos.y = speed * -1;
-		} 
-		rigidbody2D.velocity = pos;
-	
-	}
 
-	void OnTriggerEnter2D(Collider2D other)
+			transform.Translate(Vector3.back * Time.deltaTime*3);
+		} 
+
+		
+	}
+	
+	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "coin") {
 			Destroy(other.gameObject);
@@ -54,18 +53,9 @@ public class Move : MonoBehaviour {
 			pos.x *= -1;
 			transform.position = pos;
 		}
-		else if (other.gameObject.name == "oneWayDoor") {
 
-			rigidbody2D.velocity = Vector2.zero;
-			Vector2 pos = rigidbody2D.velocity;
-			Debug.Log(pos.y + ":y   x: " + pos.x);
-			pos.y = 9000;
-			rigidbody2D.velocity = pos;
-			pos = rigidbody2D.velocity;
-			Debug.Log(pos.y + ":y   x: " + pos.x);
-		}
 	}
-	void OnCollisionEnter2D(Collision2D other)
+	void OnCollisionEnter(Collision other)
 	{
 		if (other.gameObject.name == "npc") {
 			if(GameManager.pcpStatus()){
@@ -75,7 +65,7 @@ public class Move : MonoBehaviour {
 				GameManager.gameOverSet();
 				Destroy(this.gameObject);
 			}
-
+			
 		}
 	}
 }

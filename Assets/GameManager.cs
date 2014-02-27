@@ -27,9 +27,10 @@ public class GameManager : MonoBehaviour {
 		return pcpOn;
 	}
 	void Update(){
-		if (pcpTime > 0)
-			pcpTime -= Time.deltaTime;
-		Debug.Log ("pcpTime: " + pcpTime);
+		if (pcpTime > 0) {
+						pcpTime -= Time.deltaTime;
+						Debug.Log ("pcpTime: " + pcpTime);
+				}
 	}
 
 	void OnGUI(){
