@@ -13,6 +13,7 @@ public class Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		Vector2 pos = rigidbody2D.velocity;
 		if (Input.GetAxis ("Horizontal") > 0) {
 			//pos.y = 0;
@@ -72,10 +73,23 @@ public class Move : MonoBehaviour {
 				Destroy(other.gameObject);
 			}
 			else{
-				GameManager.gameOverSet();
-				Destroy(this.gameObject);
+				if(Singleton.instance.Health > 0){ 
+					Singleton.instance.Health -=1;
+					string healthbarToKill = "health" + (3-Singleton.instance.Health);
+					Destroy(GameObject.Find(healthbarToKill).gameObject);
+					Vector3 pos = transform.position;
+					pos.y = -2.675865f;
+					pos.x = 0.006740279f;
+					transform.position = pos;
+				
+				}
+				else {
+					GameManager.gameOverSet();
+					Destroy(this.gameObject);
+				}
 			}
 
 		}
+		//Debug.Log(other.relativeVelocity.magnitude);
 	}
 }

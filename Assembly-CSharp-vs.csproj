@@ -48,11 +48,15 @@
   <ItemGroup>
      <Compile Include="Assets\CamMove3D.cs" />
      <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\GameOver.cs" />
      <Compile Include="Assets\Menu.cs" />
      <Compile Include="Assets\Move.cs" />
      <Compile Include="Assets\Move3D.cs" />
+     <Compile Include="Assets\MovingWalls.cs" />
      <Compile Include="Assets\NPC.cs" />
+     <Compile Include="Assets\NPC3D.cs" />
      <Compile Include="Assets\ScaleToScreen.cs" />
+     <Compile Include="Assets\Singleton.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -62,8 +62,16 @@ public class Move3D : MonoBehaviour {
 				Destroy(other.gameObject);
 			}
 			else{
-				GameManager.gameOverSet();
-				Destroy(this.gameObject);
+				if(Singleton.instance.Health > 0){ 
+					Singleton.instance.Health -=1;
+					//Pushed back if hit
+					transform.Translate(Vector3.back * Time.deltaTime*100);
+					
+				}
+				else {
+					GameManager.gameOverSet();
+					Destroy(this.gameObject);
+				}
 			}
 			
 		}
